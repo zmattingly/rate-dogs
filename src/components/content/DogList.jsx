@@ -6,17 +6,16 @@ import styled from 'styled-components'
 const DogListStyled = styled.div`
   border-top: solid 0.5rem var(--black);
   display: grid;
-  gap: 4rem;
-  grid-auto-rows: auto 365px;
+  gap: 2rem;
+  grid-auto-rows: auto;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  height: 100%;
 `
 
 const DogItemStyled = styled.div`
   display: grid;
-  grid-gap: 1rem;
   grid-template-rows: subgrid;
   grid-row: span 1;
-  margin-top: 3rem;
 
   a {
     text-decoration: none;
@@ -24,8 +23,8 @@ const DogItemStyled = styled.div`
 
   h3,
   h4 {
-    margin: 0 0 1rem;
     text-align: center;
+    margin: 1rem 0;
   }
 `
 
@@ -49,9 +48,12 @@ const DogList = (props) => {
   return (
     <DogListStyled>
       {dogs
-        .sort((a, b) =>
-          sortByRating ? b.rating - a.rating : a.name.localeCompare(b.name)
-        )
+        .sort((a, b) => {
+          if (sortByRating && b.rating !== a.rating) {
+            return b.rating - a.rating
+          }
+          return a.name.localeCompare(b.name)
+        })
         .map((dog, index) => (
           <DogItem
             key={dog._id}

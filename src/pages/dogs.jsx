@@ -10,7 +10,7 @@ const DogsPage = (props) => {
   return (
     <>
       <h1>Dogs</h1>
-      <p>We currently have {dogs.length} dog available for rating!</p>
+      <p>We currently have {dogs.length} dogs available for rating!</p>
       <DogList dogs={dogs} />
     </>
   )

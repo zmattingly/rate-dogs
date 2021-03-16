@@ -4,6 +4,7 @@ import Img from 'gatsby-image'
 import styled from 'styled-components'
 
 const DogListStyled = styled.div`
+  border-top: solid 0.5rem var(--black);
   display: grid;
   gap: 4rem;
   grid-auto-rows: auto 365px;
@@ -21,19 +22,21 @@ const DogItemStyled = styled.div`
     text-decoration: none;
   }
 
-  h3 {
+  h3,
+  h4 {
     margin: 0 0 1rem;
     text-align: center;
   }
 `
 
 const DogItem = (props) => {
-  const { dog } = props
+  const { dog, position } = props
 
   return (
     <DogItemStyled>
       <Link to={`/dogs/${dog.slug.current}`}>
         <h3>{dog.name}</h3>
+        {position && <h4>{`Number ${position} dog!`}</h4>}
         <Img fluid={dog.image.asset.fluid} alt={dog.name} />
       </Link>
     </DogItemStyled>
@@ -41,14 +44,20 @@ const DogItem = (props) => {
 }
 
 const DogList = (props) => {
-  const { dogs } = props
+  const { dogs, sortByRating } = props
 
   return (
     <DogListStyled>
       {dogs
-        .sort((a, b) => a.name.localeCompare(b.name))
-        .map((dog) => (
-          <DogItem key={dog._id} dog={dog} />
+        .sort((a, b) =>
+          sortByRating ? b.rating - a.rating : a.name.localeCompare(b.name)
+        )
+        .map((dog, index) => (
+          <DogItem
+            key={dog._id}
+            dog={dog}
+            position={sortByRating ? index + 1 : null}
+          />
         ))}
     </DogListStyled>
   )

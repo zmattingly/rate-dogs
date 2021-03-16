@@ -28,6 +28,10 @@ const GlobalStyles = createGlobalStyle`
     color: var(--black);
   }
   
+  p {
+    font-size: 2.5rem;
+  }
+
   img {
     max-width: 100%;
   }

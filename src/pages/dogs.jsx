@@ -19,7 +19,7 @@ const DogsPage = (props) => {
 export default DogsPage
 
 export const query = graphql`
-  query DogQuery {
+  query DogsQuery {
     dogs: allSanityDog {
       nodes {
         _id

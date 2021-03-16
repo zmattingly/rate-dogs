@@ -37,13 +37,13 @@ const Nav = () => (
   <NavStyled>
     <ul>
       <li>
-        <Link to="/">Home</Link>
+        <Link to="/">Rate</Link>
       </li>
       <li>
         <Link to="/dogs">Dogs</Link>
       </li>
       <li>
-        <Link to="/dogs">
+        <Link to="/">
           <Logo />
         </Link>
       </li>

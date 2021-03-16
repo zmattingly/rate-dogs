@@ -43,7 +43,7 @@ const Nav = () => (
         <Link to="/dogs">Dogs</Link>
       </li>
       <li>
-        <Link to="/">
+        <Link to="/dogs">
           <Logo />
         </Link>
       </li>
